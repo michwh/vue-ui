@@ -1,5 +1,5 @@
-import db from '../config/db.js'
-const usersModel = '../schema/users.js'
+const db = require('../config/db.js');
+const usersModel = '../schema/users.js';
 const NothingLeftDB = db.NothingLeft;
 const Users = NothingLeftDB.import(usersModel);
 
@@ -13,6 +13,6 @@ const getUserByName = async function (name) {
 	return userInfo;
 };
 
-export default{
-	getUserByName
-}
+module.exports = {
+  getUserByName
+};

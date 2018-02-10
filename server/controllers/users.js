@@ -5,3 +5,7 @@ const getUserInfo = async function (ctx) {
 	const result = await users.getUserByName(username);
 	ctx.body=result;
 }
+
+module.exports = {
+	getUserInfo
+};
