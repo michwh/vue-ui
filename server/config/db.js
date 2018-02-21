@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+//require('../../.env')
 
-const NothingLeft = new Sequelize('mysql://root:116huang10@localhost/nothing-left',{
+const NothingLeft = new Sequelize(`mysql://root:hwh@localhost/nothing-left`,{
 	define:{
 		timestamps:false
 	}

@@ -56,34 +56,41 @@
             login:function(){        
                 this.checkPassword();
                 this.checkPhone();
-            /*
-               this.$http.post('http://localhost:8081/static/json/user.json', {
-                   user_name: this.cellphone,
-                   password: this.password
-                })
-               .then(function (response) {
-               switch(response.data.code){
-                case 200:this.isLoading=true;break;
-                case 201:this.showSnackbar("用户名不存在！");break;
-                case 202:this.showSnackbar("密码不正确！");break;
-               }
-                })
-               .catch(function (error) {
-                console.log(error);
-                }); 
-            
-             
-             this.$http.get('http://localhost:8081/static/json/user.json').then(
+                let obj = {
+                  name: this.cellphone,
+                  password: this.password
+                }
+                const result = this.$http.post('/auth/users', obj);
+                //console.log("post过去了");
+				result.then((res) => {
+                    //console.log("获得res");
+					switch(res.data.code) {
 
-            function(response){
-             alert(response.data.users);
-           
-            },
-             function(response){
-            alert("获取json文件失败！");
-            }) 
-            */
-              
+					case 200:
+					this.isLoading=true;
+					sessionStorage.setItem('demo-token', res.data.token)
+					this.$router.push('/PersonalCenter');
+					break;
+
+					case 201:
+					this.showSnackbar("用户名不存在！");
+					sessionStorage.setItem('demo-token', null)
+					break;
+
+                    case 202:
+					this.showSnackbar("密码不正确！");
+					sessionStorage.setItem('demo-token', null)
+					break;
+                    }
+                   // console.log("到wwitch");
+					
+				    }, (err) => {
+					    console.log(err)
+					    //this.$message.error('请求错误！')
+					    sessionStorage.setItem('demo-token', null) // 将token清空
+				    })
+				return result
+
             },
             checkPhone:function(){
                 if(this.cellphone==''){
