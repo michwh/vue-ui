@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="head">
-      <img src="/static/personalCenter/user1.jpg" class="pic">
-      <p class="user-name">onthinice</p>
+      <img src="../assets/images/settings.png" class="pic">
+      <p class="user-name">{{username}}</p>
     </div>
     <div class="isolation-belt"></div>
       <router-link to="PersonalCenter/myRelease" >
@@ -29,16 +29,35 @@
 
 <script>
 import menu from '@/components/menu'
+import jwt from 'jsonwebtoken'
 export default{
     name:'PersonalCenter',
     components: {
        'v-menu': menu
       },
+    created(){
+      const userInfo = this.getUserInfo();
+      if(userInfo !== null){
+        //alert("有吗"+userInfo.name);
+        this.username = userInfo.name;
+      }
+    },
     data(){
         return{
-            
+          username:''
         }
 
+    },
+    methods: {
+      getUserInfo () {
+      const token = sessionStorage.getItem('demo-token')
+      if (token !== null && token !== 'null') {
+        let decode = jwt.decode(token)
+        return decode
+      } else {
+        return null
+      }
+    },
     }
 }   
 </script>

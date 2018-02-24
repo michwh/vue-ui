@@ -9,6 +9,11 @@ function resolve (dir) {
 }
 
 module.exports = {
+  node: {
+   net: 'empty',
+   tls: 'empty',
+    dns: 'empty'
+  },
   entry: {
     app: './src/main.js'
   },

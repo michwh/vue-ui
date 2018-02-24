@@ -6,9 +6,21 @@
                 <span>首页</span>
             </div>
         </router-link>
+        <router-link to="personalCenter" >
+            <div class="icon message">
+                <img src="../assets/images/message.png"><br>
+                <span>消息</span>
+            </div>
+        </router-link>
         <router-link to="release" >
             <div class="icon release">
                 <img src="../assets/images/round_add_fill.png">
+            </div>
+        </router-link>
+        <router-link to="personalCenter" >
+            <div class="icon my">
+                <img src="../assets/images/search.png"><br>
+                <span>搜索</span>
             </div>
         </router-link>
         <router-link to="personalCenter" >
@@ -40,7 +52,7 @@
     position: fixed;
     bottom: 0;
     z-index: 3;
-    height: 2.6rem;
+    height: 2.7rem;
     border-top: 0.03rem solid #dcdcdc;
 }
 .icon {
@@ -48,16 +60,8 @@
     /*font-size: 0.75rem;*/
     color: #000000;
     float: left;
-    margin: 0 auto;        
-}
-.index {
-    width: 30%; 
-}
-.my {
-    width: 30%;
-}
-.release {
-    width: 40%;
+    margin: 0 auto;
+    width: 20%;        
 }
 .icon img {
     height: 1.5rem;
@@ -68,8 +72,8 @@
     height: 2.3rem;
     width: 2.3rem;
 }
-span {
+.icon span {
     font-size: 0.6rem;
-    margin-top: 0.1rem;  
+    /*margin-top: 0.2rem; */ 
 }	
 </style>

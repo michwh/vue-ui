@@ -69,7 +69,7 @@
 					case 200:
 					this.isLoading=true;
 					sessionStorage.setItem('demo-token', res.data.token)
-					this.$router.push('/PersonalCenter');
+					this.$router.push('/home');
 					break;
 
 					case 201:

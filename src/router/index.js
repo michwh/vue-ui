@@ -18,16 +18,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: home,
+      component:login
     },
     {
       path:'/home',
-      component:home,
+      component:home
     },   
-    {
-      path:'/login',
-      component:login
-    },
+    // {
+    //   path:'/login',
+    //   component:login
+    // },
     {
       path:'/register',
       component:register

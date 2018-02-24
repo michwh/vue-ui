@@ -13,13 +13,11 @@ const postUserAuth =async function (ctx) {
 	const userInfo = await users.getUserByName(data.name)
 	if (userInfo != null) { // 如果查无此用户会返回null
 	  if (!bcrypt.compareSync(data.password, userInfo.password)) {
-			console.log("密码错误");
 		ctx.body = {
 		  code: 202, 
 		  info: '密码错误！'
 		}
 	  } else {
-			console.log("正常");
 		const userToken = {
 		  name: userInfo.username,
 		  id: userInfo.id

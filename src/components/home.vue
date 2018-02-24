@@ -1,7 +1,7 @@
 <template>
 	<div class="main">
 		<router-link to="/register" >还没有账号？去注册&nbsp;</router-link><br>
-		<router-link to="/login">已有账号, 去登录</router-link><br>
+		<router-link to="/">已有账号, 去登录</router-link><br>
 		<router-link to="/PersonalCenter">个人中心</router-link><br>
 		<router-link to="/PersonalCenter/setUp">设置</router-link><br>
 		<router-link to="/release">发布</router-link><br>
