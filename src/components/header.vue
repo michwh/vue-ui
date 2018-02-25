@@ -28,14 +28,14 @@
 	.header{
 		width: 100%;
 		background-color: #1E90FF;
-		height: 2.7rem;
+		height: 2.5rem;
 		position: fixed;
 		top: 0rem;
 		z-index: 3;
 	}
 	.header-icon{
-		height: 2.5rem;
-		width: 2.5rem;
+		height: 2.4rem;
+		width: 2.4rem;
 		background-image: url('../assets/images/back.png');
 		background-repeat: no-repeat;
     background-position: center;
@@ -45,7 +45,7 @@
 	}
 	.header-cont{
 		color: #ffffff;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		height: 2.5rem;
 		width: 65%;
 		/*border: 1px solid black;*/

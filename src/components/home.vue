@@ -1,22 +1,42 @@
 <template>
-	<div class="main">
-		<router-link to="/register" >还没有账号？去注册&nbsp;</router-link><br>
-		<router-link to="/">已有账号, 去登录</router-link><br>
-		<router-link to="/PersonalCenter">个人中心</router-link><br>
-		<router-link to="/PersonalCenter/setUp">设置</router-link><br>
-		<router-link to="/release">发布</router-link><br>
-        <router-link to="/PersonalCenter/myCollection">我的收藏</router-link><br>
-         <router-link to="/PersonalCenter/myRelease">我的发布</router-link><br>
-        <router-link to="/PersonalCenter/setUp/myInformation">个人信息设置</router-link><br>
-	</div>
+  <div>
+	  <v-list :collections="collections" :isCollection="isCollection"></v-list>
+    <v-menu></v-menu>
+  </div>
 </template>
 
 <script>
-	
+  import list from '@/components/list'
+  import menu from '@/components/menu'
+  export default{
+    name:'home',
+	  components: {
+      'v-list': list,
+      'v-menu': menu
+	  },
+    data() {
+      return {
+        collections:[],
+        isCollection:false
+      }
+    },
+    created(){
+          var this_=this;
+          this.$http.get('http://localhost:8081/static/json/myCollection.json').then(
+
+            function(response){
+                   this_.collections=response.data.collection;
+                    //alert(this_.collections);
+                },
+            function(response){
+                alert("连接json文件失败");
+            });//axios.get结束
+            //console.log(this.collections);
+            
+        }
+    }	
 </script>
 
 <style scoped>
-.main{
-	font-size: 1rem;
-}	
+
 </style>

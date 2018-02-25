@@ -12,7 +12,8 @@
       	],
       	"goods_price":"1000",
       	"title":"跳楼清仓大甩卖",
-      	"collect_state":true
+      	"collect_state":true,
+        "date":"2018-02-05"
       },
       {
       	"user_name":"我的名字就是无敌无敌无敌无敌无敌长",
@@ -21,8 +22,9 @@
            	"/static/myCollection/user2.1.jpg"
       	],
       	"goods_price":"24.5",
-      	"title":"大学物理长长长长长长长长长长长长长长标题",
-      	"collect_state":true
+      	"title":"大学物理长长长长长长长长长长长长长不构成啊啊啊啊啊啊长标题",
+      	"collect_state":true,
+        "date":"2018-02-13"
       },
       {
       	"user_name":"很短吧",
@@ -34,7 +36,8 @@
       	],
       	"goods_price":"50",
       	"title":"辣鸡Java低价出售",
-      	"collect_state":true
+      	"collect_state":true,
+        "date":"2018-01-14"
       }
   ]
 }

@@ -73,7 +73,7 @@ import header from '@/components/header'
 }
 	.goods{
 		width: 100%;
-		height: 8rem;
+		height: 7.8rem;
 		/*border: 1px solid black;*/
 		position: relative;
 		/*margin: 0 auto;*/
@@ -96,7 +96,7 @@ import header from '@/components/header'
 	}
 	.goods-bottom{/*底部*/
 		width: 100%;
-		height: 0.6rem;
+		height: 0.4rem;
 		position: absolute;
 		bottom: 0rem;
 		background: #e5e5e5;

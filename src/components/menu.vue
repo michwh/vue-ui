@@ -54,6 +54,7 @@
     z-index: 3;
     height: 2.7rem;
     border-top: 0.03rem solid #dcdcdc;
+    background-color: #ffffff;
 }
 .icon {
     height: 2.5rem;
