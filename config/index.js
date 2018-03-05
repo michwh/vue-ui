@@ -35,6 +35,10 @@ module.exports = {
       '/auth':{
         target: 'http://localhost:3001',
         changeOrigin: true
+      },
+      '/api':{
+        target: 'http://localhost:3001',
+        changeOrigin: true
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

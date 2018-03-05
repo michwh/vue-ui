@@ -61,7 +61,6 @@
                   password: this.password
                 }
                 const result = this.$http.post('/auth/users', obj);
-                //console.log("post过去了");
 				result.then((res) => {
                     //console.log("获得res");
 					switch(res.data.code) {

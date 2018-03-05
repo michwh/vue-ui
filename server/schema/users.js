@@ -11,10 +11,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     id: {
-      type: DataTypes.INTEGER(11),
+      type: DataTypes.INTEGER(10),
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
+    },
+    head: {
+      type: DataTypes.STRING(128),
+      allowNull: true 
     }
   }, {
     tableName: 'users'

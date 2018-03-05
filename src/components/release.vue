@@ -3,7 +3,7 @@
 		<div class="header">
 			<div class="header-icon" @click="back()"></div>
 			<div class="header-cont">发布</div>
-			<button type="button" class="header-release" :disabled="releaseDisabled"></button>
+			<button type="button" class="header-release" :disabled="releaseDisabled" @click="release()"></button>
 		</div>
 		<div class="message">
 			<div class="title">
@@ -38,84 +38,126 @@
 </template>
 
 <script>
+
+import jwt from 'jsonwebtoken'
+
 	export default{
 		name:'release',
 		data () {
-          return {
-             releaseDisabled:true,
-             inputDisabled:false,
-             title:'',
-             describe:'',
-             // 预览图片地址
-             imageDataList: [],
-             imagesNum:0,
-             deleteIcon:false,
-             price:'',
-             contact:'',
-             content:[]
+      return {
+        releaseDisabled:true,
+        inputDisabled:false,
+        title:'',
+        describe:'',
+        // 预览图片地址
+        imageDataList: [],
+        imagesNum:0,
+        deleteIcon:false,
+        price:'',
+        contact:'',
+        content:[],
+        userName:'',
+        head:'', //用户头像
+        id: 1
+      }
+    },
+    methods:{
+      getUserInfo () {
+        const token = sessionStorage.getItem('demo-token')
+        if (token !== null && token !== 'null') {
+          let decode = jwt.decode(token)
+          return decode
+        } else {
+        return null
+        }
+      },
+      handleFileChange(e){
+        var files = e.target.files;
+        if (!files.length)return; 
+          this.createImage(files);
+        },
+      back () {
+        history.back()
+      },
+      showDeleteIcon(){
+        this.deleteIcon=true;
+      },
+      deleteImg(index){
+        this.imageDataList.splice(index, 1);
+        this.imagesNum=this.imagesNum-1;
+      },
+      createImage(file){
+        if(typeof FileReader==='undefined'){
+          alert('您的浏览器不支持图片上传，请升级您的浏览器');
+          return false;
+        }
+        var image = new Image();         
+        var vm = this;
+        var leng=file.length;
+        for(var i=0;i<leng;i++){
+          var reader = new FileReader();
+          reader.readAsDataURL(file[i]); 
+          reader.onload =function(e){
+            vm.imageDataList.push(e.target.result);
+            vm.imagesNum=vm.imageDataList.length;                                    
+          };                 
+        }
+        //alert(vm.imageDataList);     
+      },
+      release () {
+        //let this_ = this
+        let date = new Date();
+        let obj = {
+          id: this.id++,
+          userName: this.userName,
+          avarar: this.head,
+          price: this.price,
+          productImg: this.imageDataList.join("|"),
+          title: this.title,
+          illustration: this.describe,
+          date: date.toLocaleDateString(),
+          contact: this.contact 
+        }
+        //this_.id++;
+        this.$http.post('/api/publish', obj)
+          .then((res) => {
+            if(res.data.code === 200) {
+              console.log("发布成功");
+            }
+          }, (err) => {
+            console.log(err)
+          })
+      }
+    },
+    computed:{
+      watchRelease:function(){
+        if(this.title.length>0&&this.price.length>0&&this.contact.length>0&&this.imagesNum>0){
+          this.releaseDisabled=false;
+        }
+      },
+      watchInput:function(){
+        if(this.imagesNum>3){
+          this.inputDisabled=true;
+        } else {
+          this.inputDisabled=false;
           }
-        },
-        methods:{
-        	handleFileChange(e){
-
-                var files = e.target.files;
-                if (!files.length)return; 
-                this.createImage(files);
-            },
-            back () {
-              history.back()
-            },
-            showDeleteIcon(){
-               this.deleteIcon=true;
-            },
-            deleteImg(index){
-                this.imageDataList.splice(index, 1);
-                this.imagesNum=this.imagesNum-1;
-            },
-            createImage(file){
-            	//this.imageDataList=files;
-            	if(typeof FileReader==='undefined'){
-                    alert('您的浏览器不支持图片上传，请升级您的浏览器');
-                    return false;
-                }
-                var image = new Image();         
-                var vm = this;
-                var leng=file.length;
-                for(var i=0;i<leng;i++){
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file[i]); 
-                    reader.onload =function(e){
-                    vm.imageDataList.push(e.target.result);
-                    vm.imagesNum=vm.imageDataList.length;                                    
-                    };                 
-                }     
-            },
-
-        },
-        computed:{
-            watchRelease:function(){
-            	if(this.title.length>0&&this.price.length>0&&this.contact.length>0&&this.imagesNum>0){
-            		this.releaseDisabled=false;
-            	}
-            },
-            watchInput:function(){
-            	if(this.imagesNum>3){
-            		this.inputDisabled=true;
-            	}else{
-            		this.inputDisabled=false;
-            	}
-            }
-        },
-        created(){
-           if(this.$route.query.content){
-        	    this.content = this.$route.query.content;
-                this.title=this.content.title;
-                this.describe=this.content.describe;
-                this.imageDataList=this.content.images_URL;
-                this.price=this.content.price;
-                this.contact=this.content.contact;
-                this.imagesNum=this.content.images_URL.length;
-            }
+      }
+    },
+    created(){
+      if(this.$route.query.content){
+        this.content = this.$route.query.content;
+        this.title = this.content.title;
+        this.describe = this.content.describe;
+        this.imageDataList = this.content.images_URL;
+        this.price = this.content.price;
+        this.contact = this.content.contact;
+        this.imagesNum = this.content.images_URL.length;
+      }
+      const userInfo = this.getUserInfo();
+      if(userInfo !== null){
+        this.userName = userInfo.name;
+        this.head = userInfo.head;
+      }
         }
     }    
 </script>

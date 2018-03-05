@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="head">
-      <img src="../assets/images/settings.png" class="pic">
+      <img :src=head class="pic">
       <p class="user-name">{{username}}</p>
     </div>
     <div class="isolation-belt"></div>
@@ -38,13 +38,14 @@ export default{
     created(){
       const userInfo = this.getUserInfo();
       if(userInfo !== null){
-        //alert("有吗"+userInfo.name);
         this.username = userInfo.name;
+        this.head = userInfo.head;
       }
     },
     data(){
         return{
-          username:''
+          username:'',
+          head:''
         }
 
     },

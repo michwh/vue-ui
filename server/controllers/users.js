@@ -20,7 +20,8 @@ const postUserAuth =async function (ctx) {
 	  } else {
 		const userToken = {
 		  name: userInfo.username,
-		  id: userInfo.id
+		  id: userInfo.id,
+		  head: userInfo.head
 		}
 		const secret = 'nothing-left' // 指定密钥
 		const token = jwt.sign(userToken, secret) // 签发token

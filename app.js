@@ -7,6 +7,7 @@ const historyApiFallback = require('koa2-history-api-fallback');
 const jwt =  require('koa-jwt');
 const path = require('path');
 const serve = require('koa-static');
+const api = require('./server/routes/api.js');
 
 const app = new Koa();
 const router = koaRouter();
@@ -29,6 +30,7 @@ app.on('error',(err,ctx) =>{
 });
 
 router.use('/auth',auth.router.routes())
+router.use('/api', jwt({secret: 'nothing-left'}), api.router.routes())
 
 app.use(router.routes());
 app.use(historyApiFallback())
