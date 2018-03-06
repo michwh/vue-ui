@@ -96,7 +96,8 @@ import jwt from 'jsonwebtoken'
         var leng=file.length;
         for(var i=0;i<leng;i++){
           var reader = new FileReader();
-          reader.readAsDataURL(file[i]); 
+          reader.readAsDataURL(file[i]);
+
           reader.onload =function(e){
             vm.imageDataList.push(e.target.result);
             vm.imagesNum=vm.imageDataList.length;                                    

@@ -11,6 +11,7 @@ import setUp from '@/components/setUp'
 import myCollection from '@/components/myCollection'
 import myRelease from '@/components/myRelease'
 import myInformation from '@/components/myInformation'
+import search from '@/components/search'
 Vue.use(MuseUI)
 Vue.use(Router)
 
@@ -56,5 +57,9 @@ export default new Router({
       path:'/PersonalCenter/setUp/myInformation',
        component:myInformation
     },
+    {
+      path: '/search',
+      component: search
+    }
   ]
 })

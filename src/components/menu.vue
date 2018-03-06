@@ -17,7 +17,7 @@
         <img src="../assets/images/round_add_fill.png">
         </div>
     </router-link>
-    <router-link to="personalCenter" >
+    <router-link to="search" >
       <div class="icon my">
         <img src="../assets/images/search.png"><br>
         <span>搜索</span>

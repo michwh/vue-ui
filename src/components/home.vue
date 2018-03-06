@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="search">
+      <img src="../assets/images/scan.png">
+      <input type="text" placeholder="搜索宝贝">
+      <img src="../assets/images/sort.png">
+    </div>
 	  <v-list :collections="collections" :isCollection="isCollection"></v-list>
     <v-menu></v-menu>
   </div>
@@ -8,11 +13,12 @@
 <script>
   import list from '@/components/list'
   import menu from '@/components/menu'
+
   export default{
     name:'home',
 	  components: {
       'v-list': list,
-      'v-menu': menu
+      'v-menu': menu,
 	  },
     data() {
       return {
@@ -38,5 +44,33 @@
 </script>
 
 <style scoped>
-
+.search {
+  width: 100%;
+  background-color: #1E90FF;
+  height: 2.5rem;
+  position: fixed;
+  top: 0rem;
+  z-index: 3;
+}
+.search input {
+  height: 1.8rem;
+  width: 72%;
+  background: #ffffff;
+  /*margin: 0 auto;*/
+  margin-top: 0.35rem;
+  border: 0;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: 0.75rem;
+  float: left;
+  margin-left: 0.25rem;
+  border: 0.5rem solid #ffffff;
+}
+.search img {
+  height: 1.8rem;
+  width: 1.8rem;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
+  float: left;
+}
 </style>
