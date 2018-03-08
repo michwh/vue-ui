@@ -2,13 +2,15 @@
 	<div class="menu">
     <router-link to="home" >
       <div class="icon index">
-        <img src="../assets/images/home.png"><br>
+        <img v-if="route !== '/home'" src="../assets/images/home.png">
+        <img v-else src="../assets/images/home_fill.png"><br>
         <span>首页</span>
       </div>
     </router-link>
-    <router-link to="personalCenter" >
+    <router-link to="personalCenter">
       <div class="icon message">
-        <img src="../assets/images/message.png"><br>
+        <img v-if="route !== '/message'" src="../assets/images/message.png">
+        <img v-else src="../assets/images/message_fill.png"><br>
         <span>消息</span>
       </div>
     </router-link>
@@ -17,15 +19,16 @@
         <img src="../assets/images/round_add_fill.png">
         </div>
     </router-link>
-    <router-link to="search" >
+    <router-link to="search">
       <div class="icon my">
         <img src="../assets/images/search.png"><br>
         <span>搜索</span>
       </div>
     </router-link>
-    <router-link to="personalCenter" >
+    <router-link to="personalCenter">
       <div class="icon my">
-        <img src="../assets/images/my.png"><br>
+        <img v-if="route !== '/personalCenter'" src="../assets/images/my.png">
+        <img v-else src="../assets/images/people_fill.png"><br>
         <span>我的</span>
       </div>
     </router-link>
@@ -37,12 +40,17 @@
     name:'menu',
 		data(){
 			return{
-        
+
 			}
 		},
 		methods:{
-						
-		}
+
+		},
+    computed: {
+      route () {
+        return this.$route.path
+      }
+    }
 	} 
 </script>
 

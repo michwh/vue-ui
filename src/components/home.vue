@@ -2,7 +2,9 @@
   <div>
     <div class="search">
       <img src="../assets/images/scan.png">
-      <input type="text" placeholder="搜索宝贝">
+      <router-link to="search">
+        <input type="text" placeholder="搜索宝贝">
+      </router-link>
       <img src="../assets/images/sort.png">
     </div>
 	  <v-list :collections="collections" :isCollection="isCollection"></v-list>
