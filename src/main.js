@@ -17,12 +17,12 @@ router.beforeEach((to, from, next) => {
     }
     next() // 否则跳转回登录页
   } else {
-    if (token !== 'null' && token !== null) {
+    if (token !== 'null' && token !== null || to.path === '/register') {
       Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + token // 注意Bearer后有个空格
       next() // 如果有token就正常转向
     } else {
-      next('/') // 否则跳转回登录页
-    }
+      next('/') 
+    } 
   }
 })
 

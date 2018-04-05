@@ -12,7 +12,7 @@
 			<div class="describe">
 				<textarea type="text" placeholder="内容描述..." v-model="describe"></textarea>
 				<div class="picture">
-				    <div v-for="(data,index) in imageDataList" class="img-uploader-preview">
+				    <div v-for="(data,index) in localImg" class="img-uploader-preview">
                         <div class="preview-img" @click="showDeleteIcon()">
                             <img :src="data"/>
                         </div>
@@ -50,15 +50,16 @@ import jwt from 'jsonwebtoken'
         title:'',
         describe:'',
         // 预览图片地址
-        imageDataList: [],
-        imagesNum:0,
+        //imageDataList: [],
+        //imagesNum:0,
         deleteIcon:false,
         price:'',
         contact:'',
         content:[],
         userName:'',
         head:'', //用户头像
-        id: 1
+        id: 1,
+        localImg: []
       }
     },
     methods:{
@@ -72,6 +73,7 @@ import jwt from 'jsonwebtoken'
         }
       },
       handleFileChange(e){
+        //console.log(e.target.files)
         var files = e.target.files;
         if (!files.length)return; 
           this.createImage(files);
@@ -83,25 +85,26 @@ import jwt from 'jsonwebtoken'
         this.deleteIcon=true;
       },
       deleteImg(index){
-        this.imageDataList.splice(index, 1);
-        this.imagesNum=this.imagesNum-1;
+        this.localImg.splice(index, 1);
+        //this.imagesNum=this.imagesNum-1;
       },
       createImage(file){
-        if(typeof FileReader==='undefined'){
-          alert('您的浏览器不支持图片上传，请升级您的浏览器');
-          return false;
-        }
-        var image = new Image();         
+        // if(typeof FileReader==='undefined'){
+        //   alert('您的浏览器不支持图片上传，请升级您的浏览器');
+        //   return false;
+        // }
+        //var image = new Image();         
         var vm = this;
         var leng=file.length;
         for(var i=0;i<leng;i++){
-          var reader = new FileReader();
-          reader.readAsDataURL(file[i]);
-
-          reader.onload =function(e){
-            vm.imageDataList.push(e.target.result);
-            vm.imagesNum=vm.imageDataList.length;                                    
-          };                 
+          //var reader = new FileReader();
+          vm.localImg.push(window.URL.createObjectURL(file[i]))//在界面显示图片
+          //vm.imagesNum=vm.localImg.length
+         // reader.readAsDataURL(file[i])
+         //  reader.onload =function(e){
+         //    vm.imageDataList.push(e.target.result);
+         //    vm.imagesNum=vm.imageDataList.length;                                    
+         //  };                 
         }
         //alert(vm.imageDataList);     
       },
@@ -137,7 +140,7 @@ import jwt from 'jsonwebtoken'
         }
       },
       watchInput:function(){
-        if(this.imagesNum>3){
+        if(this.localImg.length>3){
           this.inputDisabled=true;
         } else {
           this.inputDisabled=false;
@@ -170,6 +173,7 @@ import jwt from 'jsonwebtoken'
         height: 100%;
         top: 0px;
         background-color: #F5F5F5;
+
 }
 
 .header-release{
@@ -191,13 +195,13 @@ import jwt from 'jsonwebtoken'
 	.header{
 		width: 100%;
 		background-color: #1E90FF;
-		height: 2.7rem;
+		height: 2.5rem;
 		position: absolute;
 		top: 0;
 	}
 	.header-icon{
-		height: 2.5rem;
-		width: 2.5rem;
+		height: 2.4rem;
+		width: 2.4rem;
 		background-image: url('../assets/images/back.png');
 		background-repeat: no-repeat;
     background-position: center;

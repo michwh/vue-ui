@@ -6,6 +6,7 @@ const router = koaRouter();
 
 router.get('/users/:id', auth.getUserInfo)
 router.post('/users', auth.postUserAuth)
+router.post('/users/register', auth.register)
 
 module.exports = {
     router
